@@ -5,14 +5,22 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Menu } from 'lucide-react'
+import { useState } from 'react' // ← IMPORTANT pour gérer l'ouverture/fermeture
 
 const navLinks = [
   { name: "L'Approche", href: "/facteur-moscou" },
   { name: "Expertise", href: "/interventions" },
   { name: "Parcours", href: "/autorite" },
+  { name: "Diagnostic", href: "/diagnostic" }, // ← AJOUTÉ ICI
 ]
 
 export function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const handleCloseMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-brand-green/95 backdrop-blur-md border-b border-brand-gold/20 w-full">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between max-w-full overflow-hidden">
@@ -46,9 +54,14 @@ export function Header() {
           </Button>
 
           {/* Mobile Nav */}
-          <Sheet>
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden text-white hover:bg-white/10">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="lg:hidden text-white hover:bg-white/10"
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
                 <Menu className="w-6 h-6" />
               </Button>
             </SheetTrigger>
@@ -64,13 +77,20 @@ export function Header() {
                       key={link.name} 
                       href={link.href} 
                       className="text-2xl sm:text-3xl font-black uppercase tracking-tighter hover:text-brand-gold transition-colors"
+                      onClick={handleCloseMobileMenu} // ← FERME LE MENU AU CLIC
                     >
                       {link.name}
                     </Link>
                   ))}
                 </nav>
                 <div className="mt-auto pt-10">
-                  <Button className="w-full bg-[#0B3D2E] text-white py-6 sm:py-8 rounded-none uppercase font-black tracking-widest text-xs text-center flex justify-center items-center border border-brand-gold/20">
+                  <Button 
+                    className="w-full bg-[#0B3D2E] text-white py-6 sm:py-8 rounded-none uppercase font-black tracking-widest text-xs text-center flex justify-center items-center border border-brand-gold/20"
+                    onClick={() => {
+                      handleCloseMobileMenu()
+                      window.location.href = '/diagnostic'
+                    }}
+                  >
                     SOLLICITER UN AUDIT FLASH
                   </Button>
                 </div>
