@@ -12,9 +12,11 @@ export function Footer() {
               <Image src="/images/logo.png" alt="Logo" width={40} height={40} className="rounded-full border border-brand-gold/30 sm:w-[50px] sm:h-[50px]" />
               <div className="flex flex-col">
                 <span className="text-base sm:text-lg font-black tracking-tighter uppercase">Vodéa Jérôme Emile</span>
+                {/* Nom de famille ajouté ici */}
+                <span className="text-brand-gold text-sm sm:text-base font-black uppercase tracking-tighter mt-1">SOGNON DES</span>
               </div>
             </div>
-            <p className="text-brand-gold font-bold italic text-base sm:text-lg leading-tight">« Bâtir la Performance, Sécuriser l’Excellence »</p>
+            <p className="text-brand-gold font-bold italic text-base sm:text-lg leading-tight">« Bâtir la Performance, Sécuriser l'Excellence »</p>
           </div>
 
           {/* Bloc Souveraineté Opérationnelle */}
