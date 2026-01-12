@@ -4,12 +4,13 @@ import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { Shield, Award, BookOpen, Zap, Globe, AlertCircle } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Autorite() {
   const pillars = [
     {
       icon: <Shield className="w-10 h-10 sm:w-12 sm:h-12" />,
-      title: "L’Ancien Gardien des Normes d’État",
+      title: "L'Ancien Gardien des Normes d'État",
       proof: "Ancien Directeur du contrôle des Établissements Classés et Industriels (OBRGM).",
       reality: "Il était l'autorité suprême chargée de veiller à la sécurité des grandes usines et des dépôts d'explosifs.",
       value: "Une conformité totale garantissant zéro sanction et zéro suspension de licence."
@@ -19,20 +20,20 @@ export default function Autorite() {
       title: "40 Ans d'Excellence sans Faille",
       proof: "Quatre décennies de gestion de poudrières et de supervision de tirs (OFMAS, NORMAT, OBRGM).",
       reality: "Dans une industrie où l'erreur est fatale, il a dirigé des opérations à haut risque sans incident majeur.",
-      value: "L'assurance d'une exploitation \"Zéro Accident\"."
+      value: "L'assurance d'une exploitation 'Zéro Accident'."
     },
     {
       icon: <BookOpen className="w-10 h-10 sm:w-12 sm:h-12" />,
-      title: "L’Ingénierie de la Rigueur (Le Facteur Moscou)",
-      proof: "Master en Ingénierie des Mines de l’Université de Moscou.",
+      title: "L'Ingénierie de la Rigueur (Le Facteur Moscou)",
+      proof: "Master en Ingénierie des Mines de l'Université de Moscou.",
       reality: "Formé dans l'un des environnements les plus exigeants au monde pour l'exploitation des gisements.",
       value: "Une précision d'ingénierie où rien n'est laissé au hasard."
     },
     {
       icon: <Zap className="w-10 h-10 sm:w-12 sm:h-12" />,
-      title: "L’Ultime Recours des Situations de Crise",
+      title: "L'Ultime Recours des Situations de Crise",
       proof: "Directeur technique intérimaire dans des carrières actives et complexes.",
-      reality: "Intervient là où les systèmes sont défaillants et la production menacée.",
+      reality: "Intervient là où les systèmes sont défaillants et la production menacée.",
       value: "Un redressement spectaculaire avec des gains de productivité de +30% en moins de 90 jours."
     },
     {
@@ -58,7 +59,7 @@ export default function Autorite() {
             <div className="inline-flex items-center gap-4 justify-center lg:justify-start">
               <div className="h-[1px] w-8 sm:w-12 bg-brand-gold"></div>
               <span className="text-brand-gold font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-[8px] sm:text-[10px]">
-                L’Autorité Suprême des Systèmes Critiques
+                L'Autorité Suprême des Systèmes Critiques
               </span>
             </div>
             
@@ -133,7 +134,7 @@ export default function Autorite() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left">
               <div className="p-8 sm:p-12 glass border-brand-gold/20 space-y-4 sm:space-y-6">
                 <AlertCircle className="w-10 h-10 sm:w-12 sm:h-12 text-brand-gold" />
-                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tighter">Le Refus du "Consulting de Papier"</h3>
+                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tighter">Le Refus du 'Consulting de Papier'</h3>
                 <p className="text-white/60 text-sm sm:text-base leading-relaxed">
                   SOGNON-DES Emile refuse les missions purement théoriques sans suivi terrain ou supervision réelle.
                 </p>
@@ -158,9 +159,11 @@ export default function Autorite() {
             DE LA <span className="text-white">SOUVERAINETÉ.</span>
           </h2>
           <div className="pt-6 sm:pt-8 flex justify-center">
-            <Button className="bg-brand-green text-white px-10 sm:px-16 py-6 sm:py-10 rounded-none uppercase font-black tracking-widest text-lg sm:text-xl hover:scale-105 transition-all w-full sm:w-auto text-center flex justify-center items-center">
-              Solliciter le Diagnostic
-            </Button>
+            <Link href="/diagnostic">
+              <Button className="bg-brand-green text-white px-10 sm:px-16 py-6 sm:py-10 rounded-none uppercase font-black tracking-widest text-lg sm:text-xl hover:scale-105 transition-all w-full sm:w-auto text-center flex justify-center items-center">
+                Solliciter le Diagnostic
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
