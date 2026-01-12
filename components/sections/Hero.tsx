@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export function Hero() {
   return (
@@ -40,8 +41,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-[clamp(2.5rem,10vw,7.5rem)] font-black text-white leading-[0.95] mb-8 sm:mb-10 text-center lg:text-left"
           >
-            QUAND L’ERREUR <br />
-            <span className="text-brand-gold text-outline">N’EST PLUS</span> <br />
+            QUAND L'ERREUR <br />
+            <span className="text-brand-gold text-outline">N'EST PLUS</span> <br />
             UNE OPTION.
           </motion.h1>
           
@@ -59,12 +60,16 @@ export function Hero() {
                 Vous ne cherchez pas un rapport de recommandation supplémentaire. Vous cherchez une transformation réelle de vos actifs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-                <Button className="bg-brand-gold hover:bg-brand-gold-bright text-brand-green px-8 sm:px-12 py-6 sm:py-8 rounded-none uppercase tracking-widest text-[10px] sm:text-xs font-black transition-all hover:scale-105 w-full sm:w-auto">
-                  Sécuriser mon exploitation
-                </Button>
-                <Button variant="ghost" className="text-white hover:text-brand-gold px-6 sm:px-8 py-6 sm:py-8 rounded-none uppercase tracking-widest text-[10px] sm:text-xs font-black border border-white/10 hover:border-brand-gold transition-all w-full sm:w-auto">
-                  La Méthode Moscou
-                </Button>
+                <Link href="/diagnostic" className="w-full sm:w-auto">
+                  <Button className="bg-brand-gold hover:bg-brand-gold-bright text-brand-green px-8 sm:px-12 py-6 sm:py-8 rounded-none uppercase tracking-widest text-[10px] sm:text-xs font-black transition-all hover:scale-105 w-full">
+                    Sécuriser mon exploitation
+                  </Button>
+                </Link>
+                <Link href="/facteur-moscou" className="w-full sm:w-auto">
+                  <Button variant="ghost" className="text-white hover:text-brand-gold px-6 sm:px-8 py-6 sm:py-8 rounded-none uppercase tracking-widest text-[10px] sm:text-xs font-black border border-white/10 hover:border-brand-gold transition-all w-full">
+                    La Méthode Moscou
+                  </Button>
+                </Link>
               </div>
             </div>
 
