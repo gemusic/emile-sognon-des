@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export function MoscowMethod() {
   return (
@@ -58,14 +59,16 @@ export function MoscowMethod() {
                   Ma méthode repose sur le <span className="text-white font-bold">« Facteur Moscou »</span> : une ingénierie de la précision héritée des environnements les plus rigoureux au monde.
                 </p>
                 <p>
-                  Cette discipline, alliée à mon parcours d'ancien Directeur du contrôle des normes d’État, garantit une gestion méthodique et prévisible de vos risques.
+                  Cette discipline, alliée à mon parcours d'ancien Directeur du contrôle des normes d'État, garantit une gestion méthodique et prévisible de vos risques.
                 </p>
               </div>
 
               <div className="pt-4 sm:pt-8">
-                <Button className="bg-transparent border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-green px-8 sm:px-12 py-6 sm:py-10 rounded-none uppercase tracking-widest text-[10px] sm:text-xs font-black transition-all w-full sm:w-auto text-center flex justify-center items-center">
-                  Découvrir la Méthode Moscou
-                </Button>
+                <Link href="/facteur-moscou">
+                  <Button className="bg-transparent border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-green px-8 sm:px-12 py-6 sm:py-10 rounded-none uppercase tracking-widest text-[10px] sm:text-xs font-black transition-all w-full sm:w-auto text-center flex justify-center items-center">
+                    Découvrir la Méthode Moscou
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -106,9 +109,11 @@ export function FinalCTA() {
           </p>
           
           <div className="pt-8 sm:pt-12 flex justify-center">
-            <Button className="bg-brand-green hover:bg-brand-green/90 text-white px-10 sm:px-16 py-8 sm:py-12 rounded-none uppercase tracking-[0.2em] sm:tracking-[0.3em] text-base sm:text-xl font-black shadow-[0_20px_50px_rgba(5,26,20,0.3)] hover:shadow-none transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center flex justify-center items-center">
-              Solliciter le Diagnostic
-            </Button>
+            <Link href="/diagnostic">
+              <Button className="bg-brand-green hover:bg-brand-green/90 text-white px-10 sm:px-16 py-8 sm:py-12 rounded-none uppercase tracking-[0.2em] sm:tracking-[0.3em] text-base sm:text-xl font-black shadow-[0_20px_50px_rgba(5,26,20,0.3)] hover:shadow-none transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center flex justify-center items-center">
+                Solliciter le Diagnostic
+              </Button>
+            </Link>
           </div>
         </motion.div>
       </div>
