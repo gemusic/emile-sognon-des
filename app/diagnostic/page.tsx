@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Clock, ShieldCheck, AlertCircle } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Diagnostic() {
   return (
@@ -21,7 +22,7 @@ export default function Diagnostic() {
             <div className="inline-flex items-center gap-4 justify-center lg:justify-start">
               <div className="h-[1px] w-8 sm:w-12 bg-brand-gold"></div>
               <span className="text-brand-gold font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-[8px] sm:text-[10px]">
-                L’Engagement de Souveraineté
+                L'Engagement de Souveraineté
               </span>
             </div>
             
@@ -168,9 +169,11 @@ export default function Diagnostic() {
                 <Textarea placeholder="Décrivez vos systèmes défaillants, besoins de restructuration ou conformité..." className="rounded-none border-brand-green/10 focus:border-brand-gold min-h-[120px] sm:min-h-[150px] text-sm" />
               </div>
               <div className="md:col-span-2 pt-4 flex justify-center">
-                <Button className="w-full bg-brand-green text-white py-8 sm:py-10 rounded-none uppercase font-black tracking-[0.2em] sm:tracking-[0.3em] text-base sm:text-lg hover:bg-brand-gold hover:text-brand-green transition-all text-center flex justify-center items-center">
-                  Valider ma demande de Diagnostic
-                </Button>
+                <Link href="/diagnostic" className="w-full">
+                  <Button className="w-full bg-brand-green text-white py-8 sm:py-10 rounded-none uppercase font-black tracking-[0.2em] sm:tracking-[0.3em] text-base sm:text-lg hover:bg-brand-gold hover:text-brand-green transition-all text-center flex justify-center items-center">
+                    Valider ma demande de Diagnostic
+                  </Button>
+                </Link>
               </div>
             </form>
           </div>
