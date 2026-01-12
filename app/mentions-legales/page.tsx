@@ -65,8 +65,8 @@ export default function MentionsLegales() {
               <Globe className="w-12 h-12 sm:w-16 sm:h-16 text-brand-green" />
               <h3 className="text-2xl sm:text-3xl font-black text-brand-green uppercase tracking-tighter">Hébergement</h3>
               <p className="text-sm sm:text-base text-brand-green/60 leading-relaxed">
-                Hébergeur : [À compléter par le développeur]<br />
-                Adresse : [À compléter par le développeur]
+                Hébergeur : Vercel Inc. <br />
+                Adresse : 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis
               </p>
             </div>
           </div>
