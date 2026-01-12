@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { Shield, Lock, FileLock, Eye, AlertTriangle, Fingerprint } from 'lucide-react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 export default function Confidentialite() {
   return (
@@ -104,6 +106,13 @@ export default function Confidentialite() {
                 <p>
                   Pour exercer ce droit, veuillez suivre le canal de contact formel établi via le formulaire de Diagnostic de Souveraineté.
                 </p>
+                <div className="pt-4">
+                  <Link href="/diagnostic">
+                    <Button className="bg-brand-green text-white px-6 py-4 rounded-none uppercase tracking-widest text-xs font-black hover:bg-brand-gold hover:text-brand-green transition-all">
+                      Exercer mes droits via le formulaire
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="space-y-6 sm:space-y-8">
