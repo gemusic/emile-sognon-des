@@ -4,10 +4,71 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { motion } from 'framer-motion'
-import { CheckCircle2, Clock, ShieldCheck, AlertCircle } from 'lucide-react'
-import Link from 'next/link'
+import { CheckCircle2, Clock, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react'
+import { useState } from 'react'
 
 export default function Diagnostic() {
+  const [formData, setFormData] = useState({
+    organisation: '',
+    urgence: '',
+    description: '',
+    form_name: 'DIAGNOSTIC DE SOUVERAINETÉ' // Ajouté pour ton script Python
+  })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+  const [submitError, setSubmitError] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitMessage('')
+    setSubmitError('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status}`)
+      }
+
+      const result = await response.json()
+      
+      if (result.message === "Transmis à Python") {
+        setSubmitMessage('✅ Votre demande a été envoyée avec succès ! Nous vous contacterons sous 48h.')
+        
+        // Réinitialiser le formulaire
+        setFormData({
+          organisation: '',
+          urgence: '',
+          description: '',
+          form_name: 'DIAGNOSTIC DE SOUVERAINETÉ'
+        })
+      } else {
+        setSubmitError('Une erreur est survenue. Veuillez réessayer.')
+      }
+    } catch (error) {
+      console.error('Erreur:', error)
+      setSubmitError('Erreur de connexion. Veuillez réessayer dans quelques instants.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   return (
     <main className="min-h-screen bg-brand-green w-full overflow-x-hidden">
       
@@ -155,25 +216,72 @@ export default function Diagnostic() {
               <p className="text-brand-green/60 font-medium text-sm sm:text-base">Remplissez le formulaire pour initier votre Diagnostic de Souveraineté.</p>
             </div>
             
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {/* Champ caché pour le nom du formulaire */}
+              <input type="hidden" name="form_name" value="DIAGNOSTIC DE SOUVERAINETÉ" />
+              
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-brand-green/50">Organisation</label>
-                <Input placeholder="Grand groupe, État, Carrière..." className="rounded-none border-brand-green/10 focus:border-brand-gold h-12 sm:h-14 text-sm" />
+                <Input 
+                  name="organisation"
+                  placeholder="Grand groupe, État, Carrière..." 
+                  className="rounded-none border-brand-green/10 focus:border-brand-gold h-12 sm:h-14 text-sm text-gray-700 placeholder:text-gray-400"
+                  value={formData.organisation}
+                  onChange={handleChange}
+                  required
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-brand-green/50">Niveau d'urgence</label>
-                <Input placeholder="Critique, Stratégique, Préventif..." className="rounded-none border-brand-green/10 focus:border-brand-gold h-12 sm:h-14 text-sm" />
+                <Input 
+                  name="urgence"
+                  placeholder="Critique, Stratégique, Préventif..." 
+                  className="rounded-none border-brand-green/10 focus:border-brand-gold h-12 sm:h-14 text-sm text-gray-700 placeholder:text-gray-400"
+                  value={formData.urgence}
+                  onChange={handleChange}
+                  required
+                />
               </div>
               <div className="md:col-span-2 space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-brand-green/50">Nature de la crise ou du projet</label>
-                <Textarea placeholder="Décrivez vos systèmes défaillants, besoins de restructuration ou conformité..." className="rounded-none border-brand-green/10 focus:border-brand-gold min-h-[120px] sm:min-h-[150px] text-sm" />
+                <Textarea 
+                  name="description"
+                  placeholder="Décrivez vos systèmes défaillants, besoins de restructuration ou conformité..." 
+                  className="rounded-none border-brand-green/10 focus:border-brand-gold min-h-[120px] sm:min-h-[150px] text-sm text-gray-700 placeholder:text-gray-400"
+                  value={formData.description}
+                  onChange={handleChange}
+                  required
+                />
               </div>
+
+              {/* Messages de statut */}
+              {submitMessage && (
+                <div className="md:col-span-2 p-4 bg-green-50 border border-green-200 text-green-700 rounded">
+                  <p className="font-medium">{submitMessage}</p>
+                </div>
+              )}
+              
+              {submitError && (
+                <div className="md:col-span-2 p-4 bg-red-50 border border-red-200 text-red-700 rounded">
+                  <p className="font-medium">{submitError}</p>
+                </div>
+              )}
+
               <div className="md:col-span-2 pt-4 flex justify-center">
-                <Link href="/diagnostic" className="w-full">
-                  <Button className="w-full bg-brand-green text-white py-8 sm:py-10 rounded-none uppercase font-black tracking-[0.2em] sm:tracking-[0.3em] text-base sm:text-lg hover:bg-brand-gold hover:text-brand-green transition-all text-center flex justify-center items-center">
-                    Valider ma demande de Diagnostic
-                  </Button>
-                </Link>
+                <Button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-brand-green text-white py-8 sm:py-10 rounded-none uppercase font-black tracking-[0.2em] sm:tracking-[0.3em] text-base sm:text-lg hover:bg-brand-gold hover:text-brand-green transition-all text-center flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    'Valider ma demande de Diagnostic'
+                  )}
+                </Button>
               </div>
             </form>
           </div>
